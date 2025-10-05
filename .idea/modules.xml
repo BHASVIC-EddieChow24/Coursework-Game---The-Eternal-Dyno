@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Coursework-Game---The-Eternal-Dyno.iml" filepath="$PROJECT_DIR$/.idea/Coursework-Game---The-Eternal-Dyno.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eternaldyno/eternaldyno.iml" filepath="$PROJECT_DIR$/eternaldyno/eternaldyno.iml" />
     </modules>
   </component>
 </project>
