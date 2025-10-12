@@ -28,11 +28,8 @@ public class MainMenu extends JFrame {
 
         playbutton.setContentAreaFilled(false);
         playbutton.setBorderPainted(false);
-
         add(playbutton);
         add(Background);
-
-
     }
 
     public static void main(String[] args) {
