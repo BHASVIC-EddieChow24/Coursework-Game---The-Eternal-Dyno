@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainMenu extends JFrame {
-    private JLabel Background;
+    public JLabel Background;
     private JButton playbutton;
     private JButton lbbutton;
     private JButton settingsbutton;
@@ -26,11 +26,15 @@ public class MainMenu extends JFrame {
         playbutton = new JButton(finalplayicon);
 
         playbutton.setBounds(700,700,200,150);
-
         playbutton.setContentAreaFilled(false);
         playbutton.setBorderPainted(false);
 
-
+        playbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PlayScreen.open(MainMenu.this);
+            }
+        });
 
         add(playbutton);
         add(Background);
