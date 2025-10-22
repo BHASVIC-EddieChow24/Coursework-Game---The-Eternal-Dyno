@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PlayScreen extends JPanel {
-    private JPanel back;
 
     public PlayScreen() {
         this.setLayout(null);
