@@ -102,8 +102,14 @@ public class MainMenu extends JFrame {
         });
 
         Title = new JTextField("THE ETERNAL DYNO");
+        Title.setBounds(200,300,200,300);
+        Title.setEditable(false);
+        Title.setBackground(new Color(0,0,0, 0));
+        Title.setBorder(null);
         Font font = new Font("returns", Font.BOLD, 20);
         Title.setSize(200,300);
+
+
         Title.setFont(font);
 
         add(Title);
