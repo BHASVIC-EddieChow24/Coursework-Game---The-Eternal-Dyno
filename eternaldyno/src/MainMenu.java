@@ -46,6 +46,13 @@ public class MainMenu extends JFrame {
         settingsbutton.setContentAreaFilled(false);
         settingsbutton.setBorderPainted(false);
 
+        settingsbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PlayScreen.open(MainMenu.this);
+            }
+        });
+
         ImageIcon lbicon = new ImageIcon(getClass().getResource("/leaderboardbutton.png"));
         Image resizedlbicon = lbicon.getImage().getScaledInstance(150,120, Image.SCALE_SMOOTH);
         ImageIcon finallbicon = new ImageIcon(resizedlbicon);
@@ -54,6 +61,13 @@ public class MainMenu extends JFrame {
         lbbutton.setBounds(1200,700,200,150);
         lbbutton.setContentAreaFilled(false);
         lbbutton.setBorderPainted(false);
+
+        lbbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PlayScreen.open(MainMenu.this);
+            }
+        });
 
         ImageIcon customiseicon = new ImageIcon(getClass().getResource("/customisebutton.png"));
         Image resizedcustomiseicon = customiseicon.getImage().getScaledInstance(150,120, Image.SCALE_SMOOTH);
@@ -64,6 +78,13 @@ public class MainMenu extends JFrame {
         customisebutton.setContentAreaFilled(false);
         customisebutton.setBorderPainted(false);
 
+        customisebutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PlayScreen.open(MainMenu.this);
+            }
+        });
+
         ImageIcon usernameicon = new ImageIcon(getClass().getResource("/usernamebutton.png"));
         Image resizedusernameicon = usernameicon.getImage().getScaledInstance(150,120, Image.SCALE_SMOOTH);
         ImageIcon finalusernameicon = new ImageIcon(resizedusernameicon);
@@ -72,6 +93,13 @@ public class MainMenu extends JFrame {
         usernamebutton.setBounds(1225,400,150,120);
         usernamebutton.setContentAreaFilled(false);
         usernamebutton.setBorderPainted(false);
+
+        usernamebutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PlayScreen.open(MainMenu.this);
+            }
+        });
 
         Title = new JTextField("THE ETERNAL DYNO");
         Font font = new Font("returns", Font.BOLD, 20);
