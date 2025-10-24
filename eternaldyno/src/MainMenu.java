@@ -10,7 +10,7 @@ public class MainMenu extends JFrame {
     private JButton settingsbutton;
     private JButton customisebutton;
     private JButton usernamebutton;
-    private JTextField Title;
+    private JLabel Title;
 
     public MainMenu() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,16 +101,13 @@ public class MainMenu extends JFrame {
             }
         });
 
-        Title = new JTextField("THE ETERNAL DYNO");
-        Title.setBounds(200,300,200,300);
-        Title.setEditable(false);
+        Title = new JLabel("THE ETERNAL DYNO");
+        Title.setBounds(445,70,1000,200);
         Title.setBackground(new Color(0,0,0, 0));
+        Title.setForeground(Color.BLACK);
         Title.setBorder(null);
-        Font font = new Font("returns", Font.BOLD, 20);
-        Title.setSize(200,300);
 
-
-        Title.setFont(font);
+        Title.setFont(new Font("ALGERIAN", Font.BOLD, 80));
 
         add(Title);
         add(lbbutton);
