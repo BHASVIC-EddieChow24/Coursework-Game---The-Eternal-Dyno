@@ -6,9 +6,17 @@ import java.awt.event.ActionListener;
 public class PlayScreen extends JPanel implements Runnable{
 
     private JPanel panel1;
-    private Thread gameThread;
+    int  playerX = 400;
+    int  playerY = 500;
+    int playerSpeed = 10;
+    Keyhandler keyhandler = new Keyhandler();
+    Thread gameThread;
+
 
     public PlayScreen() {
+        this.setBackground(Color.BLACK);
+        this.addKeyListener(keyhandler);
+        this.setFocusable(true);
     }
 
     public static void open(JFrame window){
@@ -16,8 +24,7 @@ public class PlayScreen extends JPanel implements Runnable{
         window.setContentPane(playScreen);
         window.revalidate();
         window.repaint();
-
-
+        playScreen.startGameThread();
     }
 
     public void startGameThread(){
@@ -29,6 +36,9 @@ public class PlayScreen extends JPanel implements Runnable{
     public void run(){
 
         while(gameThread != null){
+
+            System.out.println("running");
+
             update();
             repaint();
 
@@ -36,10 +46,22 @@ public class PlayScreen extends JPanel implements Runnable{
     }
 
     public void update(){
-        
+        if(keyhandler.leftPressed){
+            playerX -= playerSpeed;
+        }
+        if(keyhandler.rightPressed){
+            playerX += playerSpeed;
+        }
     }
+
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+
+        g2d.setColor(Color.WHITE);
+        g2d.fillRect(playerX,playerY, 60, 60);
+        g2d.dispose();
+
     }
 
 }
