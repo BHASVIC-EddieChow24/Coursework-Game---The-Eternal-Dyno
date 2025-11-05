@@ -3,10 +3,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PlayScreen extends JPanel {
+public class PlayScreen extends JPanel implements Runnable{
+
+    private JPanel panel1;
+    private Thread gameThread;
 
     public PlayScreen() {
-        this.setLayout(null);
     }
 
     public static void open(JFrame window){
@@ -14,6 +16,30 @@ public class PlayScreen extends JPanel {
         window.setContentPane(playScreen);
         window.revalidate();
         window.repaint();
+
+
+    }
+
+    public void startGameThread(){
+        gameThread = new Thread(this);
+        gameThread.start();
+    }
+
+    @Override
+    public void run(){
+
+        while(gameThread != null){
+            update();
+            repaint();
+
+        }
+    }
+
+    public void update(){
+        
+    }
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
     }
 
 }
