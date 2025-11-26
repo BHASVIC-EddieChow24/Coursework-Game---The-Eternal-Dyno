@@ -59,7 +59,7 @@ public class MainMenu extends JFrame {
         settingsbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PlayScreen.open(MainMenu.this);
+                Settings.open(MainMenu.this);
             }
         });
 
@@ -77,7 +77,7 @@ public class MainMenu extends JFrame {
         lbbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PlayScreen.open(MainMenu.this);
+                Leaderboard.open(MainMenu.this);
             }
         });
 
@@ -95,7 +95,7 @@ public class MainMenu extends JFrame {
         customisebutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PlayScreen.open(MainMenu.this);
+                Customise.open(MainMenu.this);
             }
         });
 
@@ -113,7 +113,7 @@ public class MainMenu extends JFrame {
         usernamebutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PlayScreen.open(MainMenu.this);
+                UsernameInput.open(MainMenu.this);
             }
         });
 

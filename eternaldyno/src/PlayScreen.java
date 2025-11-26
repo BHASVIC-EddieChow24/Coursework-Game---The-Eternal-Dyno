@@ -7,10 +7,8 @@ public class PlayScreen extends JPanel implements Runnable{
 
 //creating the variables for this class
     private JPanel panel1;
-    int  playerX = 400;
-    int  playerY = 500;
-    int playerSpeed = 10;
     Keyhandler keyhandler = new Keyhandler();
+    Player player = new Player (this, keyhandler);
     Thread gameThread;
 
 //setting the rules for this class
@@ -65,23 +63,15 @@ public class PlayScreen extends JPanel implements Runnable{
 
     //what changes every cycle of the thread
     public void update(){
-        if(keyhandler.leftPressed){
-            playerX -= playerSpeed;
-        }
-        else if(keyhandler.rightPressed){
-            playerX += playerSpeed;
-        }
+        player.update();
     }
 
     //what is being outputted to the screen every cycle of the thread
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-
-        g2d.setColor(Color.WHITE);
-        g2d.fillRect(playerX,playerY, 60, 60);
+        player.paint(g2d);
         g2d.dispose();
 
     }
-
 }
