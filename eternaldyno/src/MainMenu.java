@@ -1,8 +1,10 @@
+//Importing needed libraries
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//Defining the variables for the class
 public class MainMenu extends JFrame {
     public JLabel Background;
     private JButton playbutton;
@@ -12,16 +14,20 @@ public class MainMenu extends JFrame {
     private JButton usernamebutton;
     private JLabel Title;
 
+    //Setting the rules for the class
     public MainMenu() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(1550, 1175);
         this.setLocationRelativeTo(null);
+        this.setFocusable(true);
 
+//Creating the background
         ImageIcon backgroundIcon = new ImageIcon(getClass().getResource("/background img.png"));
         Background = new JLabel(backgroundIcon);
         Background.setBounds(0, 0, 1600, 1200);
 
+//Creating the playbutton and setting its location
         ImageIcon playicon = new ImageIcon(getClass().getResource("/Playbutton1.png"));
         Image resizedplayicon = playicon.getImage().getScaledInstance(200, 150, Image.SCALE_SMOOTH);
         ImageIcon finalplayicon = new ImageIcon(resizedplayicon);
@@ -31,6 +37,7 @@ public class MainMenu extends JFrame {
         playbutton.setContentAreaFilled(false);
         playbutton.setBorderPainted(false);
 
+        //checks to see if its being pressed
         playbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,6 +45,7 @@ public class MainMenu extends JFrame {
             }
         });
 
+//Creating the settings button and setting its location
         ImageIcon settingsicon = new ImageIcon(getClass().getResource("/settingsbutton.jpg"));
         Image resizedsettingsicon = settingsicon.getImage().getScaledInstance(175, 150, Image.SCALE_SMOOTH);
         ImageIcon finalsettingsicon = new ImageIcon(resizedsettingsicon);
@@ -47,6 +55,7 @@ public class MainMenu extends JFrame {
         settingsbutton.setContentAreaFilled(false);
         settingsbutton.setBorderPainted(false);
 
+        //checking to see if its being pressed
         settingsbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,6 +63,7 @@ public class MainMenu extends JFrame {
             }
         });
 
+//creating the leaderboard button and setting its location
         ImageIcon lbicon = new ImageIcon(getClass().getResource("/leaderboardbutton.png"));
         Image resizedlbicon = lbicon.getImage().getScaledInstance(150, 120, Image.SCALE_SMOOTH);
         ImageIcon finallbicon = new ImageIcon(resizedlbicon);
@@ -63,6 +73,7 @@ public class MainMenu extends JFrame {
         lbbutton.setContentAreaFilled(false);
         lbbutton.setBorderPainted(false);
 
+        //checks to see if its being pressed
         lbbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,6 +81,7 @@ public class MainMenu extends JFrame {
             }
         });
 
+//creating the customise button and setting its location
         ImageIcon customiseicon = new ImageIcon(getClass().getResource("/customisebutton.png"));
         Image resizedcustomiseicon = customiseicon.getImage().getScaledInstance(150, 120, Image.SCALE_SMOOTH);
         ImageIcon finalcustomiseicon = new ImageIcon(resizedcustomiseicon);
@@ -79,6 +91,7 @@ public class MainMenu extends JFrame {
         customisebutton.setContentAreaFilled(false);
         customisebutton.setBorderPainted(false);
 
+        //checks to see if it is being pressed
         customisebutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,6 +99,7 @@ public class MainMenu extends JFrame {
             }
         });
 
+//creating the username button and setting its location
         ImageIcon usernameicon = new ImageIcon(getClass().getResource("/usernamebutton.png"));
         Image resizedusernameicon = usernameicon.getImage().getScaledInstance(150, 120, Image.SCALE_SMOOTH);
         ImageIcon finalusernameicon = new ImageIcon(resizedusernameicon);
@@ -95,6 +109,7 @@ public class MainMenu extends JFrame {
         usernamebutton.setContentAreaFilled(false);
         usernamebutton.setBorderPainted(false);
 
+        //checks to see if its being pressed
         usernamebutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -102,6 +117,7 @@ public class MainMenu extends JFrame {
             }
         });
 
+//Creating the title and its settings
         Title = new JLabel("THE ETERNAL DYNO");
         Title.setBounds(445, 70, 1000, 200);
         Title.setBackground(new Color(0, 0, 0, 0));
@@ -110,6 +126,7 @@ public class MainMenu extends JFrame {
 
         Title.setFont(new Font("ALGERIAN", Font.BOLD, 80));
 
+//adding everything to the window
         add(Title);
         add(lbbutton);
         add(settingsbutton);
