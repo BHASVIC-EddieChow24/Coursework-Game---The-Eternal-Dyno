@@ -1,30 +1,38 @@
+import javax.swing.*;
 import java.awt.*;
 
 public class Player {
-    public int x = 500,y = 500;
-    public int speed = 15;
+    public int x = 600,y = 600;
+    public int horizontalspeed = 15;
 
     PlayScreen playscreen;
     Keyhandler keyhandler;
+    Image climberHang, climberJump;
 
     public Player(PlayScreen playscreen, Keyhandler keyhandler) {
         this.playscreen = playscreen;
         this.keyhandler = keyhandler;
+        climberHang = new ImageIcon(getClass().getResource("/Climber hang.png")).getImage();
+        climberJump = new ImageIcon(getClass().getResource("/Climber jump.png")).getImage();
     }
 
     public void update(){
         if(keyhandler.leftPressed){
-            x -= speed;
+            x -= horizontalspeed;
         }
         else if(keyhandler.rightPressed){
-            x += speed;
+            x += horizontalspeed;
         }
     }
 
     //what is being outputted to the screen every cycle of the thread
     public void paint(Graphics g2d){
-        g2d.setColor(Color.WHITE);
-        g2d.fillRect(x,y, 60, 60);
+        if(keyhandler.spacePressed){
+            g2d.drawImage(climberJump, x, y, 256, 384, null);
+        }
+        else{
+            g2d.drawImage(climberHang, x, y, 256, 384, null);
+        }
 
     }
 }

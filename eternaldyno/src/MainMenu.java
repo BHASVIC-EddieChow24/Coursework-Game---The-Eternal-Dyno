@@ -18,7 +18,7 @@ public class MainMenu extends JFrame {
     public MainMenu() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.setSize(1550, 1175);
+        this.setSize(1550, 1050);
         this.setLocationRelativeTo(null);
         this.setFocusable(true);
 

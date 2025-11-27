@@ -1,7 +1,9 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class PlayScreen extends JPanel implements Runnable{
 
@@ -10,13 +12,23 @@ public class PlayScreen extends JPanel implements Runnable{
     Keyhandler keyhandler = new Keyhandler();
     Player player = new Player (this, keyhandler);
     Thread gameThread;
+    int back1y = 0, back2y = 0, scrollspeed = 4;
+    BufferedImage background;
+
 
 //setting the rules for this class
     public PlayScreen() {
-        this.setBackground(Color.BLACK);
         this.addKeyListener(keyhandler);
-        this.setDoubleBuffered(true);
         this.setFocusable(true);
+
+        try (InputStream instream = getClass().getResourceAsStream("/Main background.png")) {
+            background = ImageIO.read(instream);
+            back1y = 0;
+            back2y = -background.getHeight();
+        }catch (IOException e){
+            e.printStackTrace();
+            background = null;
+        }
     }
 
 //open function, turns the window into the playscreen from main menu
@@ -63,6 +75,20 @@ public class PlayScreen extends JPanel implements Runnable{
 
     //what changes every cycle of the thread
     public void update(){
+        if(background != null){
+            back1y += scrollspeed;
+            back2y += scrollspeed;
+
+            int height = background.getHeight();
+
+            if(back1y > height){
+                back1y = back2y - height;
+            }
+            if(back2y > height){
+                back2y = back1y - height;
+            }
+        }
+
         player.update();
     }
 
@@ -70,6 +96,12 @@ public class PlayScreen extends JPanel implements Runnable{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
+
+        if(background != null){
+            g2d.drawImage(background, 0, back1y, background.getWidth(), background.getHeight(), null);
+            g2d.drawImage(background, 0, back2y, background.getWidth(), background.getHeight(), null);
+        }
+
         player.paint(g2d);
         g2d.dispose();
 
