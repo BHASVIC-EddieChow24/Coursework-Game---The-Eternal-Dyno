@@ -12,8 +12,8 @@ public class Player {
     public Player(PlayScreen playscreen, Keyhandler keyhandler) {
         this.playscreen = playscreen;
         this.keyhandler = keyhandler;
-        climberHang = new ImageIcon(getClass().getResource("/yoshi.png")).getImage();
-        climberJump = new ImageIcon(getClass().getResource("/mario jump.png")).getImage();
+        climberHang = new ImageIcon(getClass().getResource("/Climber hang.png")).getImage();
+        climberJump = new ImageIcon(getClass().getResource("/Climber jump.png")).getImage();
     }
 
     public void update(){

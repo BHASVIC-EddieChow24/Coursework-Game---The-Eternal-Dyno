@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Random;
 
 public class PlayScreen extends JPanel implements Runnable{
 
@@ -12,8 +13,14 @@ public class PlayScreen extends JPanel implements Runnable{
     Keyhandler keyhandler = new Keyhandler();
     Player player = new Player (this, keyhandler);
     Thread gameThread;
+
     int back1y = 0, back2y = 0, scrollspeed = 4, score = 0;
     BufferedImage background;
+
+    Platform[] platforms =  new Platform[5];
+    int platformCount = 0;
+    Image platformImage;
+    Random rand = new Random();
 
 
 //setting the rules for this class
@@ -21,7 +28,7 @@ public class PlayScreen extends JPanel implements Runnable{
         this.addKeyListener(keyhandler);
         this.setFocusable(true);
 
-        try (InputStream instream = getClass().getResourceAsStream("/sky.png")) {
+        try (InputStream instream = getClass().getResourceAsStream("/Main background.png")) {
             background = ImageIO.read(instream);
             back1y = 0;
             back2y = -background.getHeight();
@@ -29,6 +36,8 @@ public class PlayScreen extends JPanel implements Runnable{
             e.printStackTrace();
             background = null;
         }
+
+        platformImage = new ImageIcon(getClass().getResource("/Platform.png")).getImage();
     }
 
 //open function, turns the window into the playscreen from main menu
