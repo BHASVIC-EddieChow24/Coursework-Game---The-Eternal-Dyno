@@ -12,7 +12,7 @@ public class PlayScreen extends JPanel implements Runnable{
     Keyhandler keyhandler = new Keyhandler();
     Player player = new Player (this, keyhandler);
     Thread gameThread;
-    int back1y = 0, back2y = 0, scrollspeed = 4;
+    int back1y = 0, back2y = 0, scrollspeed = 4, score = 0;
     BufferedImage background;
 
 
@@ -21,7 +21,7 @@ public class PlayScreen extends JPanel implements Runnable{
         this.addKeyListener(keyhandler);
         this.setFocusable(true);
 
-        try (InputStream instream = getClass().getResourceAsStream("/Main background.png")) {
+        try (InputStream instream = getClass().getResourceAsStream("/sky.png")) {
             background = ImageIO.read(instream);
             back1y = 0;
             back2y = -background.getHeight();
@@ -75,6 +75,9 @@ public class PlayScreen extends JPanel implements Runnable{
 
     //what changes every cycle of the thread
     public void update(){
+
+        score += 4;
+
         if(background != null){
             back1y += scrollspeed;
             back2y += scrollspeed;
@@ -101,6 +104,9 @@ public class PlayScreen extends JPanel implements Runnable{
             g2d.drawImage(background, 0, back1y, background.getWidth(), background.getHeight(), null);
             g2d.drawImage(background, 0, back2y, background.getWidth(), background.getHeight(), null);
         }
+
+        g2d.setFont(new Font("ALGERIAN", Font.PLAIN, 30));
+        g2d.drawString("Score: "+score, 50, 75);
 
         player.paint(g2d);
         g2d.dispose();
