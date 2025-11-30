@@ -1,10 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Line2D;
 
 public class Player {
     public int x = 600,y = 600;
     public int horizontalspeed = 15, vertspeed = 15;
-    public boolean jumping = false;
+    public boolean jumping = false, latched = false;
 
     PlayScreen playscreen;
     Keyhandler keyhandler;
@@ -18,9 +19,16 @@ public class Player {
     }
 
     public void update(){
+        if(latched){
+            y+=4;
+            return;
+        }
+
         if(keyhandler.spacePressed && !jumping){
+            latched = false;
             jumping = true;
         }
+
         if(jumping){
             y -= vertspeed;
         }
@@ -31,9 +39,15 @@ public class Player {
             }
     }
 
+    public Line2D.Float playerbounds(){
+        return new Line2D.Float(x,y,x+256,y);
+    }
+
+
     public void onPlatform(int platformY){
-        y = platformY;
+        y = platformY +90;
         jumping = false;
+        latched = true;
     }
 
     public boolean gameover(){

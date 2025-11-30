@@ -1,6 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -131,6 +132,21 @@ public class PlayScreen extends JPanel implements Runnable{
         }
 
         player.update();
+
+        if(player.jumping){
+            for(int i = 0; i < platformCount; i++){
+                Platform p = platforms[i];
+
+                Line2D.Float playerline = player.playerbounds();
+                Rectangle platformbounds = new Rectangle(p.x, p.y, 384, 256);
+
+                if(playerline.intersects(platformbounds)){
+                    player.onPlatform(p.y);
+                    break;
+                }
+            }
+
+        }
     }
 
     //what is being outputted to the screen every cycle of the thread
