@@ -17,7 +17,7 @@ public class PlayScreen extends JPanel implements Runnable{
     int back1y = 0, back2y = 0, scrollspeed = 4, score = 0;
     BufferedImage background;
 
-    Platform[] platforms =  new Platform[5];
+    Platform[] platforms =  new Platform[3];
     int platformCount = 0;
     Image platformImage;
     Random rand = new Random();
@@ -50,6 +50,17 @@ public class PlayScreen extends JPanel implements Runnable{
         playScreen.startGameThread();
     }
 
+    public void spawn(){
+        if(platformCount >= platforms.length){
+            return;
+        }
+        int x = rand.nextInt(1550-384);
+        int y = -199;
+
+        platforms[platformCount] = new Platform(x, y, platformImage);
+        platformCount ++;
+    }
+
 //starts the game thread
     public void startGameThread(){
         gameThread = new Thread(this);
@@ -59,6 +70,7 @@ public class PlayScreen extends JPanel implements Runnable{
     //runs the thread, updating and repainting
     @Override
     public void run(){
+
         //setting the refresh rate to 30Hz, interval is 1/30 of a second
         int frametime = 1000/30;
 
@@ -87,6 +99,10 @@ public class PlayScreen extends JPanel implements Runnable{
 
         score += 4;
 
+        if(score%300 == 0 || score ==4){
+            spawn();
+        }
+
         if(background != null){
             back1y += scrollspeed;
             back2y += scrollspeed;
@@ -98,6 +114,19 @@ public class PlayScreen extends JPanel implements Runnable{
             }
             if(back2y > height){
                 back2y = back1y - height;
+            }
+        }
+
+        for(int i = 0; i < platformCount; i++){
+            Platform p = platforms[i];
+            p.update(scrollspeed);
+            if(p.y > 800){
+                for(int k = 0; k < platformCount - 1; k++){
+                    platforms[k] = platforms[k + 1];
+                }
+                platforms[platformCount - 1] = null;
+                platformCount--;
+                i--;
             }
         }
 
@@ -116,6 +145,10 @@ public class PlayScreen extends JPanel implements Runnable{
 
         g2d.setFont(new Font("ALGERIAN", Font.PLAIN, 30));
         g2d.drawString("Score: "+score, 50, 75);
+
+        for( int i = 0; i < platformCount; i++){
+            platforms[i].draw(g2d);
+        }
 
         player.paint(g2d);
         g2d.dispose();
