@@ -127,12 +127,12 @@ public class MainMenu extends JFrame {
         Title.setFont(new Font("ALGERIAN", Font.BOLD, 80));
 
 //adding everything to the window
-        add(Title);
-        add(lbbutton);
-        add(settingsbutton);
-        add(customisebutton);
-        add(usernamebutton);
-        add(playbutton);
-        add(Background);
+        getContentPane().add(Title);
+        getContentPane().add(lbbutton);
+        getContentPane().add(settingsbutton);
+        getContentPane().add(customisebutton);
+        getContentPane().add(usernamebutton);
+        getContentPane().add(playbutton);
+        getContentPane().add(Background);
     }
 }

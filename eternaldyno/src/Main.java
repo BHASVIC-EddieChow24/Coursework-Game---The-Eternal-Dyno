@@ -8,5 +8,4 @@ public class Main {
         JFrame frame = new MainMenu();
         frame.setVisible(true); //opens the window
     }
-
 }
