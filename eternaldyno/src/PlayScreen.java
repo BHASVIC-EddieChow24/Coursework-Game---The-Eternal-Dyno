@@ -131,22 +131,22 @@ public class PlayScreen extends JPanel implements Runnable{
             }
         }
 
+
         player.update();
 
-        if(player.jumping){
+        if(player.jumping && !player.latched && player.cooldown == 0){
             for(int i = 0; i < platformCount; i++){
                 Platform p = platforms[i];
-
                 Line2D.Float playerline = player.playerbounds();
                 Rectangle platformbounds = new Rectangle(p.x, p.y, 384, 256);
 
-                if(playerline.intersects(platformbounds)){
-                    player.onPlatform(p.y);
-                    break;
-                }
+                if (playerline.intersects(platformbounds)) {
+                        player.onPlatform(p.y);
+                    }
             }
 
         }
+
     }
 
     //what is being outputted to the screen every cycle of the thread

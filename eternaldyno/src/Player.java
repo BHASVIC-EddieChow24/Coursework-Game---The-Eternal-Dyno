@@ -4,8 +4,9 @@ import java.awt.geom.Line2D;
 
 public class Player {
     public int x = 600,y = 600;
-    public int horizontalspeed = 15, vertspeed = 15;
+    public int horizontalspeed = 15, vertspeed = 15, timer = 0;
     public boolean jumping = false, latched = false;
+    public int cooldown = 0;
 
     PlayScreen playscreen;
     Keyhandler keyhandler;
@@ -21,17 +22,31 @@ public class Player {
     public void update(){
         if(latched){
             y+=4;
-            return;
+
+            if(keyhandler.spacePressed){
+                jumping = true;
+                latched = false;
+                cooldown = 5;
+            }
+            else{
+                return;
+            }
         }
 
-        if(keyhandler.spacePressed && !jumping){
-            latched = false;
+        if(cooldown >0){
+            cooldown--;
+        }
+
+        if(keyhandler.spacePressed){
             jumping = true;
+            latched = false;
+            cooldown = 5;
         }
 
         if(jumping){
             y -= vertspeed;
         }
+
             if (keyhandler.leftPressed) {
                 x -= horizontalspeed;
             } else if (keyhandler.rightPressed) {
@@ -40,12 +55,11 @@ public class Player {
     }
 
     public Line2D.Float playerbounds(){
-        return new Line2D.Float(x,y,x+256,y);
+        return new Line2D.Float(x,y, x+256,y);
     }
 
-
     public void onPlatform(int platformY){
-        y = platformY +90;
+        y = platformY+90;
         jumping = false;
         latched = true;
     }
