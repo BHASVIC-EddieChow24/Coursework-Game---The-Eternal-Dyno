@@ -10,6 +10,7 @@ import java.util.Random;
 public class PlayScreen extends JPanel implements Runnable{
 
 //creating the variables for this class
+    private JFrame window;
     private JPanel panel1;
     Keyhandler keyhandler = new Keyhandler();
     Player player = new Player (this, keyhandler);
@@ -25,7 +26,7 @@ public class PlayScreen extends JPanel implements Runnable{
 
 
 //setting the rules for this class
-    public PlayScreen() {
+    public PlayScreen(JFrame window) {
         this.addKeyListener(keyhandler);
         this.setFocusable(true);
 
@@ -43,7 +44,7 @@ public class PlayScreen extends JPanel implements Runnable{
 
 //open function, turns the window into the playscreen from main menu
     public static void open(JFrame window){
-        PlayScreen playScreen = new PlayScreen();
+        PlayScreen playScreen = new PlayScreen(window);
         window.setContentPane(playScreen);
         window.revalidate();
         window.repaint();
@@ -94,10 +95,13 @@ public class PlayScreen extends JPanel implements Runnable{
             }
 
             if(player.gameover()){
-
                 gameThread = null;
+                JFrame frame = new MainMenu();
+                frame.setVisible(true);
             }
+
         }
+
     }
 
     //what changes every cycle of the thread
