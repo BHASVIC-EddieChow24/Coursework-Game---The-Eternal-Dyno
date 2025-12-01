@@ -94,6 +94,7 @@ public class PlayScreen extends JPanel implements Runnable{
                 e.printStackTrace();
             }
 
+            //When player touches the edge, the game ends and a new main menu window appears
             if(player.gameover()){
                 gameThread = null;
                 JFrame frame = new MainMenu();
@@ -113,6 +114,7 @@ public class PlayScreen extends JPanel implements Runnable{
             spawn();
         }
 
+        //stacks 2 background images and makes them scroll down constantly
         if(background != null){
             back1y += scrollspeed;
             back2y += scrollspeed;
@@ -127,6 +129,8 @@ public class PlayScreen extends JPanel implements Runnable{
             }
         }
 
+
+        //makes all platforms scroll down at the same speed as the background
         for(int i = 0; i < platformCount; i++){
             Platform p = platforms[i];
             p.update(scrollspeed);
@@ -141,8 +145,11 @@ public class PlayScreen extends JPanel implements Runnable{
         }
 
 
+        //calls the update function from the player class
         player.update();
 
+
+        //checks to see if player is instersecting with any of the platforms. If so, it calls the 'onPlatform' method
         if(player.jumping && !player.latched && player.cooldown == 0){
             for(int i = 0; i < platformCount; i++){
                 Platform p = platforms[i];
@@ -168,6 +175,7 @@ public class PlayScreen extends JPanel implements Runnable{
             g2d.drawImage(background, 0, back2y, background.getWidth(), background.getHeight(), null);
         }
 
+        //sets the font and displays the score in the corner of the screen
         g2d.setFont(new Font("ALGERIAN", Font.PLAIN, 30));
         g2d.drawString("Score: "+score, 50, 75);
 
@@ -175,6 +183,7 @@ public class PlayScreen extends JPanel implements Runnable{
             platforms[i].draw(g2d);
         }
 
+        //calls the paint method from the player class
         player.paint(g2d);
         g2d.dispose();
 
